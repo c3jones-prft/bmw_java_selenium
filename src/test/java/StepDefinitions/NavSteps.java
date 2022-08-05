@@ -3,6 +3,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class NavSteps {
 
@@ -12,6 +15,7 @@ public class NavSteps {
 //    }
     @Given("user is on home page")
     public void user_navigated_to_home_page(){
+
         System.out.println("Step Detail - user is navigated to homepage");
 
     }
