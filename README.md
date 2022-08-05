@@ -12,3 +12,5 @@ response times for requests made across it.
 Since 2019 it remains a shining example of how websites and web applications should evolve for the years to come as the internet and its use expands rapidly.
 
 -- Carl E Jones III
+
+For educational use only!
