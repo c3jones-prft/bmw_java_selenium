@@ -9,8 +9,9 @@ Feature: feature to test loading of the Homepage
   Scenario: Check the ui elements of the homepage Navigation
 
     Given user has started a web browser
-    And user is on home page
-    When home page loads
-    And user clicks on tab home
+    And user navigates to application home
+    Then cookie overlay appears
+    And home screen is clear
+    Then user clicks on tab home
     Then user is redirected to the current page of the web application
 

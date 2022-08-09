@@ -1,21 +1,28 @@
+/**
+ Author: Carl Jones III
+ Date: 8/4/22
+ Description: n/a
+ **/
 package StepDefinitions;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class NavSteps {
 
-//    @Given("user is on home page")
-//    public void verifyHomepageNavigation(){
-//        System.out.println("Time to test BMW.com!");
-//    }
     WebDriver driver;
+    Document webApp;
 
     @Given("user has started a web browser")
     public void user_generates_browser(){
@@ -28,21 +35,62 @@ public class NavSteps {
 
         driver.manage().window().maximize();
     }
-    @And("user is on home page")
-    public void user_navigated_to_home_page(){
+    @And("user navigates to application home")
+    public void user_navigated_to_home_page() {
 
-        driver.navigate().to("https://www.bmw.com/en/index.html");
-        System.out.println("Step Detail - user is navigated to homepage");
+        try{
+            driver.navigate().to("https://www.bmw.com/en/index.html");
+            System.out.println("Step Detail - user is navigated to web application");
+        }catch (Exception e){
+            System.out.println("Step Detail - failed to navigate user to web application");
+
+            System.out.println(e);
+        }
 
     }
 
-    @When("home page loads")
+    @Then("cookie overlay appears")
+    public void page_loads_cookie_accept_or_deny(){
+//        driver.findElement(By.cssSelector(".accept-button.button-primary")).click();
+//        driver.findElement(By.xpath("//span[contains(text(), 'Accept all')]")).click();
+
+        try {
+            webApp = Jsoup.connect("https://www.bmw.com/en/index.html").get();
+            System.out.println("Step Detail - lets turn BMW.com into a bowl of soup!");
+
+            String title = webApp.title();
+            System.out.println("Page Title: " + title);
+
+
+            Elements elements = webApp.getElementsByTag("Button");
+
+            for (Element element : elements){
+                System.out.println("Scraped Button Elements: " + element);
+            }
+
+            try {
+                Element element = elements.get(0);
+                System.out.println("Button Element: " + element);
+                System.out.println("Step Detail - user has accepted all cookies");
+
+            }catch (Exception e){
+                System.out.println("Step Detail - user was unable to accept all cookies");
+
+            }
+
+        }catch (IOException e){
+            System.out.println("Step Detail - failed to turn BMW.com into a bowl of soup!");
+            System.out.println(e);
+        }
+    }
+
+    @And("home screen is clear")
     public void user_ready_on_home_page(){
-        System.out.println("Step Detail - user has cached homepage");
+        System.out.println("Step Detail - user is ready");
 
     }
 
-    @And("user clicks on tab home")
+    @Then("user clicks on tab home")
     public void user_clicks_home_tab(){
         System.out.println("Step Detail - user clicks home tab within topnav");
     }
