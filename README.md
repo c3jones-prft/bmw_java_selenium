@@ -13,6 +13,8 @@ Since 2019 it remains a shining example of how websites and web applications sho
 
 [Read more about BMW.com here!](https://www.thinkwithgoogle.com/intl/en-gb/marketing-strategies/app-and-mobile/bmws-journey-fast-smooth-and-reliable-mobile-website/)
 
+![BMW.com 2022 Test Findings](bmw_non_accessible_cookie_overlay_section_tag.png)
+
 -- Carl E Jones III
 
 For educational use only!
